@@ -1,0 +1,36 @@
+#=============================================================================
+#
+#  File: SConstruct
+#
+#  Author: bing
+#
+#  Date: 2016-09-20
+#
+#  Version: v2.0
+#
+#  Github/Mail: https://github.com/binchen-china    <563853086@qq.com>
+#
+#  Note: build project file
+#
+#=============================================================================
+
+#!/usr/bin/python 
+# -*- coding: UTF-8 -*- 
+
+ENV_CPP = Environment(CC = 'g++')
+
+#compile info
+TARGETNAME = 'gateservice'
+LIB = Split('DMFramework DMMessage ACE pthread jsoncpp protobuf amqpcpp hiredis mysqlpp')
+FILELIST = Glob('*.cpp')
+FILELIST = FILELIST
+HEADFILEPATH = Split('../../3rd ../../common/Framework ../../message ../../3rd/amqpcpp')
+LIB_DIR = Split('../../common/Lib ../../message')
+FLAGS = Split('-std=c++11 -Wall -g -D _DEBUG')
+
+#Program target
+TARGETFILE = ENV_CPP.Program(target = TARGETNAME,source = FILELIST,LIBS = LIB,CPPPATH = HEADFILEPATH,LIBPATH = LIB_DIR,CCFLAGS = FLAGS)
+
+#install
+INSTALL = ENV_CPP.Install('../../bin', TARGETFILE)
+ENV_CPP.Alias('install',INSTALL)

@@ -1,0 +1,34 @@
+#=============================================================================
+#
+#  File: SConstruct
+#
+#  Author: bing
+#
+#  Date: 2016-09-01
+#
+#  Version: v2.0
+#
+#  Github/Mail: https://github.com/binchen-china    <563853086@qq.com>
+#
+#  Note: build project file
+#
+#=============================================================================
+
+env = Environment()
+
+TARGETNAME = 'DMFramework'
+
+FILELIST = Glob('*.cpp')
+
+HEADFILEPATH = Split('../../3rd ../../3rd/amqpcpp')
+
+LIB = Split('ACE protobuf pthread jsoncpp amqpcpp')
+
+FLAGS = Split('-std=c++11 -Wall')
+
+TARGETFILE = StaticLibrary(target = TARGETNAME,source = FILELIST,CPPPATH = HEADFILEPATH,LIBS = LIB,CCFLAGS = FLAGS)
+
+#install
+INSTALL = env.Install('../Lib', TARGETFILE)
+env.Alias('install',INSTALL)
+

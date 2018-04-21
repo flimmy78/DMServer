@@ -1,0 +1,25 @@
+{
+    "service_info":
+    {
+        "service_name" : "GateService",
+        "service_ip" : "172.18.188.234",
+        "service_port" : 6668,
+        "service_tcp" : 0
+    },
+    
+    "service_config":
+    { 
+        "log_level" : "DEBUG",
+        "message_max_size" : 64,
+        "process_num" : 4,
+        "FD_NUM" : 2048
+    },
+    
+    "message_queue":
+    {
+        "queue_ip" : "127.0.0.1",
+        "queue_port" : 5672,
+        "queue_user": "bing",
+        "queue_passwd": "bing"
+    }
+}
